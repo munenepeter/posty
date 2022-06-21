@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\PostIndex;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 
@@ -28,5 +29,7 @@ Route::middleware([
     })->name('dashboard');
 
     //posts
-    Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
+   // Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 });
+
+Route::get('/posts', PostIndex::class)->name('posts.index');
