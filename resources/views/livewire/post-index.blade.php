@@ -42,12 +42,18 @@
                                          {{ $post->body }}
                                      </td>
 
-                                     <td class="px-6 py-4">
-                                         {{ $post->user->name }}
+                                     <td  class="px-6 py-4">
+                                         {{ $post->user->name }} <br>
+                                         {{$post->created_at->diffForHumans();}}
                                      </td>
                                      <td class="px-6 py-4 text-right">
-                                         <a wire:click.prevent="showEditPostModal({{ $post->id }})" href="#"
-                                             class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                         <div class="flex space-x-2">
+                                            <a wire:click.prevent="showEditPostModal({{ $post->id }})" href="#"
+                                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+   
+                                                <a wire:click.prevent="deletePost({{ $post->id }})" href="#"
+                                                   class="font-medium text-blue-600 dark:text-blue-500 hover:underline">  &nbsp;Delete</a>
+                                         </div>
                                      </td>
                                  </tr>
                              @endforeach
@@ -100,7 +106,7 @@
                  </x-slot>
                  <x-slot name="footer">
                      @if ($isEditMode)
-                         <x-jet-button class="bg-blue-500" wire:click="UpdatePost">Update</x-jet-button>
+                         <x-jet-button class="bg-blue-500" wire:click="updatePost">Update</x-jet-button>
                      @else
                          <x-jet-button class="bg-blue-500" wire:click="storePost">Save</x-jet-button>
                      @endif

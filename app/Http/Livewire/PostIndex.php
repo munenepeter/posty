@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 
 class PostIndex extends Component {
 
+    public $post;
+
     public $showingPostModal = false;
     public $isEditMode = false;
 
@@ -18,6 +20,7 @@ class PostIndex extends Component {
         'title' => 'required',
         'body' => 'required'
     ];
+
     public function showPostModal() {
         $this->showingPostModal = true;
     }
@@ -37,14 +40,29 @@ class PostIndex extends Component {
 
     public function showEditPostModal($id) {
 
-        $post =  Post::findorFail($id);
-        
-        $this->isEditMode = true;
-        
-        $this->title = $post->title;
-        $this->body = $post->body;
+        $this->post =  Post::findorFail($id);
+        $this->title = $this->post->title;
+        $this->body = $this->post->body;
 
+        $this->isEditMode = true;
         $this->showPostModal();
+    }
+
+    public function updatePost() {
+
+        $this->validate();
+
+        $this->post->update([
+            'title' => $this->title,
+            'body' => $this->body
+        ]);
+
+        $this->reset();
+    }
+
+    public function deletePost($id) {
+        Post::findorFail($id)->delete();
+        $this->reset();
     }
 
     public function render() {
