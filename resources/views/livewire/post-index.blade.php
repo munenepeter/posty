@@ -66,11 +66,11 @@
                            
                             <div class="mb-6">
                               <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Post Title</label>
-                              <input type="text"  name="title" id="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full h-14 p-4 " required="">
+                              <input type="text" wire:model.lazy="title" name="title" id="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full h-14 p-4 " required="">
                             </div>
                             <div class="mb-6">
                                 <label for="body" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Post Body</label>
-                                <textarea id="body" name="body" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="Post Something..."></textarea>
+                                <textarea id="body" wire:model.lazy="body"  name="body" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="Post Something..."></textarea>
                             </div>
                            
                           </form>
@@ -78,7 +78,7 @@
 
                     </x-slot>
                     <x-slot name="footer">
-                        <x-jet-button class="bg-blue-500" wire:click="showPostModal">Save</x-jet-button>
+                        <x-jet-button class="bg-blue-500" wire:click="storePost">Save</x-jet-button>
 
                     </x-slot>
                 </x-jet-dialog-modal>
