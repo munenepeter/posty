@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class PostIndex extends Component {
 
     public $showingPostModal = false;
+    public $isEditMode = false;
 
     public $title;
     public $body;
@@ -23,7 +24,7 @@ class PostIndex extends Component {
 
     public function storePost() {
         //create post
-       $this->validate();
+        $this->validate();
 
         Post::create([
             'title' => $this->title,
@@ -34,7 +35,21 @@ class PostIndex extends Component {
         $this->reset();
     }
 
+    public function showEditPostModal($id) {
+
+        $post =  Post::findorFail($id);
+        
+        $this->isEditMode = true;
+        
+        $this->title = $post->title;
+        $this->body = $post->body;
+
+        $this->showPostModal();
+    }
+
     public function render() {
-        return view('livewire.post-index');
+        return view('livewire.post-index', [
+            'posts' => Post::all()
+        ]);
     }
 }
