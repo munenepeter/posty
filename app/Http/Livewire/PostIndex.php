@@ -2,8 +2,9 @@
 
 namespace App\Http\Livewire;
 
-use Livewire\Component;
 use App\Models\Post;
+use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 
 class PostIndex extends Component {
 
@@ -27,7 +28,7 @@ class PostIndex extends Component {
         Post::create([
             'title' => $this->title,
             'body' => $this->body,
-            'user_id' => auth()->id
+            'user_id' => Auth::id()
         ]);
 
         $this->reset();
