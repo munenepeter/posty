@@ -62,7 +62,7 @@
                     <x-slot name="content">
 
 
-                        <form method="post" action="">
+                        <form>
                            
                             <div class="mb-6">
                               <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Post Title</label>
